@@ -10,6 +10,8 @@ const ventasRouter = require("./routes/Ventas.routes");
 const sucursalesRouter = require("./routes/Sucursales.routes");
 const clientesRouter = require("./routes/Clientes.routes");
 const barriosRouter = require("./routes/Barrios.routes");
+const bodegasRouter = require("./routes/Bodegas.routes");
+const entradasRouter = require("./routes/Entradas.routes");
 const path = require("path");
 const session = require("express-session");
 const CONFIG = require("./config/config");
@@ -22,11 +24,11 @@ APP.use(cors());
 APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: false }));
 APP.use(
-  session({
-    secret: CONFIG.SECRET_TOKEN,
-    resave: true,
-    saveUninitialized: true,
-  })
+    session({
+        secret: CONFIG.SECRET_TOKEN,
+        resave: true,
+        saveUninitialized: true,
+    })
 );
 APP.use(morgan("dev"));
 
@@ -39,6 +41,8 @@ APP.use("/ventas", ventasRouter);
 APP.use("/api/sucursales", sucursalesRouter);
 APP.use("/api/clientes", clientesRouter);
 APP.use("/api/barrios", barriosRouter);
+APP.use("/api/bodegas", bodegasRouter);
+APP.use("/api/entradas", entradasRouter);
 
 //Elementos Estaticos
 APP.use(express.static(path.join(__dirname, "public")));
